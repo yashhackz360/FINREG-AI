@@ -1,12 +1,19 @@
 
 # FinReg AI: Real-Time Indian Fintech Regulatory Assistant
 
-[![Docker](https://img.shields.io/badge/Docker-ready-blue?logo=docker)](https://www.docker.com/)  
-[![Python](https://img.shields.io/badge/Python-3.9+-green?logo=python)](https://www.python.org/)  
-[![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-streaming-black?logo=apachekafka)](https://kafka.apache.org/)  
-[![Pinecone](https://img.shields.io/badge/Pinecone-Vector%20DB-orange)](https://www.pinecone.io/)  
-[![Groq](https://img.shields.io/badge/Groq-LLM%20Inference-red)](https://groq.com/)  
-[![Streamlit](https://img.shields.io/badge/Streamlit-UI%20Framework-FF4B4B?logo=streamlit)](https://streamlit.io/)  
+<div align="center">
+
+<a href="https://www.docker.com/"><img src="https://img.shields.io/badge/Docker-ready-blue?logo=docker"></a>
+<a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.9+-green?logo=python"></a>
+<a href="https://kafka.apache.org/"><img src="https://img.shields.io/badge/Apache%20Kafka-streaming-black?logo=apachekafka"></a>
+<a href="https://www.pinecone.io/"><img src="https://img.shields.io/badge/Pinecone-Vector%20DB-orange"></a>
+<a href="https://groq.com/"><img src="https://img.shields.io/badge/Groq-LLM%20Inference-red"></a>
+<a href="https://streamlit.io/"><img src="https://img.shields.io/badge/Streamlit-UI%20Framework-FF4B4B?logo=streamlit"></a>
+
+</div>
+
+![ui_Screenshot(finregai_final.png)
+
 
 FinReg AI is a production-grade Retrieval-Augmented Generation (RAG) system designed to deliver **accurate, real-time answers on Indian financial regulations**.  
 It continuously ingests official publications from the **Reserve Bank of India (RBI)** and the **Securities and Exchange Board of India (SEBI)**, builds an evolving knowledge base, and provides **source-backed answers** via a conversational interface.
@@ -178,7 +185,4 @@ Ask regulatory queries via the Streamlit chat UI. Summaries update automatically
 
 [LinkedIn – Yashwanth Kasarabada](https://www.linkedin.com/in/yashwanth-kasarabada-ba4265258/)
 
-```
 
-Do you want me to **merge the Setup steps and Project Structure into a single “Quickstart” section** (so that LLMs and humans see code files + run commands together), or keep them separate like above?
-```
