@@ -68,20 +68,20 @@ artifacts/latest_summaries.json
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Setup
 
 ### Prerequisites
 - Docker + Docker Compose  
 - Python 3.9+  
 - API keys: Pinecone, Groq  
 
-### Setup
+### Installation
 
 1. **Clone Repo**
    ```bash
    git clone https://github.com/your-username/RAG-FINTECH-REGULATOR.git
    cd RAG-FINTECH-REGULATOR
-````
+
 
 2. **Environment Variables**
 
@@ -103,7 +103,7 @@ artifacts/latest_summaries.json
    cp .streamlit/secrets.toml.example .streamlit/secrets.toml
    ```
 
-   Add same keys in `secrets.toml`.
+   Add the same keys in `secrets.toml`.
 
 4. **Clean Setup**
 
@@ -125,47 +125,35 @@ artifacts/latest_summaries.json
 
 ---
 
-## 🔧 Usage
-
-Ask regulatory queries via the Streamlit chat UI. Summaries update automatically in the sidebar.
-
-**Example Queries**
-
-* *Semantic*: “Summarize RBI’s master direction on digital lending.”
-* *Keyword*: “Find details on Priority Sector Lending (PSL).”
-* *Conversational*: “What are the main categories within PSL?”
-
----
-
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```
 RAG-FINTECH-REGULATOR/
 ├── .streamlit/
-│   └── secrets.toml              # Streamlit secrets
+│   └── secrets.toml                  # Streamlit secrets
 ├── app/
-│   └── streamlit_ui.py           # Streamlit frontend (Stage 4 – UI)
-├── artifacts/                    # State, indexes, summaries
+│   └── streamlit_ui.py               # Stage 4 – UI
+├── artifacts/                        # State, indexes, summaries
 ├── data_ingestion/
-│   ├── kafka_producer.py         # Kafka producer utility (Stage 1)
-│   └── regulatory_monitor.py     # RSS monitoring loop (Stage 1 – Discover)
+│   ├── kafka_producer.py             # Stage 1 – Producer
+│   └── regulatory_monitor.py         # Stage 1 – Discover
 ├── scripts/
-│   ├── 01_ingest_data.py         # Entrypoint for Stage 1
-│   ├── 02_realtime_ingestion.py  # Entrypoint for Stage 2 – Process/Index
-│   └── 03_summarizer.py          # Entrypoint for Stage 3 – Summarize
+│   ├── 01_ingest_data.py             # Stage 1 – Entrypoint
+│   ├── 02_realtime_ingestion.py      # Stage 2 – Process/Index
+│   └── 03_summarizer.py              # Stage 3 – Summarize
 ├── src/
-│   ├── config.py                 # Global configs
+│   ├── config.py                     # Global configs
 │   ├── generation/llm_generator.py   # Stage 8 – Answer
 │   ├── pipeline/rag_pipeline.py      # Stage 7 – Query Fusion
 │   ├── processing/document_processor.py # Stage 2 – Cleaning & chunking
 │   └── retrieval/
-│       ├── embedder.py           # Stage 4 – Embedding model
-│       ├── keyword_index.py      # Stage 4 – BM25 Index
-│       └── vector_index.py       # Stage 4 – Pinecone Index
+│       ├── embedder.py               # Stage 4 – Embedding
+│       ├── keyword_index.py          # Stage 4 – BM25 Index
+│       └── vector_index.py           # Stage 4 – Pinecone Index
 ├── streaming/
-│   ├── kafka_consumer.py         # Stage 2 – Real-Time Consumer
-│   ├── document_processor.py     # Stage 2 – Processor for streaming
-│   └── vector_updater.py         # Stage 4 – Index updates
+│   ├── kafka_consumer.py             # Stage 2 – Consumer
+│   ├── document_processor.py         # Stage 2 – Streaming processor
+│   └── vector_updater.py             # Stage 4 – Index updater
 ├── .env
 ├── docker-compose.yml
 ├── Dockerfile
@@ -174,7 +162,23 @@ RAG-FINTECH-REGULATOR/
 
 ---
 
+## 🔧 Usage
+
+Ask regulatory queries via the Streamlit chat UI. Summaries update automatically in the sidebar.
+
+**Example Queries**
+
+* “Summarize RBI’s master direction on digital lending.”
+* “Find details on Priority Sector Lending (PSL).”
+* “What are the main categories within PSL?”
+
+---
+
 ## 📬 Connect
 
 [LinkedIn – Yashwanth Kasarabada](https://www.linkedin.com/in/yashwanth-kasarabada-ba4265258/)
 
+```
+
+Do you want me to **merge the Setup steps and Project Structure into a single “Quickstart” section** (so that LLMs and humans see code files + run commands together), or keep them separate like above?
+```
