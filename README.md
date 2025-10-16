@@ -12,7 +12,7 @@
 
 </div>
 
-![ui_Screenshot(finregai_final.png)
+![ui_Screenshot(finreg ai_final.png)
 
 
 FinReg AI is a production-grade Retrieval-Augmented Generation (RAG) system designed to deliver **accurate, real-time answers on Indian financial regulations**.  
