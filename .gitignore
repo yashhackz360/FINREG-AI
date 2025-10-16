@@ -1,0 +1,19 @@
+# Secret files
+.env
+.streamlit/secrets.toml
+
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Persistent state and indexes from runs
+artifacts/*
+!artifacts/.gitkeep
+
+# IDE and OS files
+.idea/
+.vscode/
+*.DS_Store
