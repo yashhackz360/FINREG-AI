@@ -1,7 +1,7 @@
-````markdown
+
 # ⚖️ FinReg AI: Real-Time Indian Fintech Regulatory Assistant 🇮🇳  
 
-![ui_image_ss](ui.png)
+![Ui_screenshot](finregai_final.png)
 
 ## 🌟 Overview  
 
@@ -44,14 +44,14 @@ This platform is built to support **financial institutions, compliance teams, an
 ## 🚀 Get Started  
 
 ### 1. Clone the Repository  
-```bash
+```
 git clone https://github.com/your-username/RAG-FINTECH-REGULATOR.git
 cd RAG-FINTECH-REGULATOR
 ````
 
 ### 2. Set Environment Variables
 
-```bash
+```
 cp .env.example .env
 ```
 
@@ -65,7 +65,7 @@ GROQ_API_KEY="YOUR_GROQ_API_KEY"
 
 ### 3. Configure Streamlit Secrets
 
-```bash
+```
 cp .streamlit/secrets.toml.example .streamlit/secrets.toml
 ```
 
@@ -73,14 +73,14 @@ Paste the same keys inside `secrets.toml`.
 
 ### 4. Clean Setup
 
-```bash
+
 docker compose down --volumes
 rm -f artifacts/*.pkl artifacts/*.json
 ```
 
-### 5. Build & Launch
+## 5. Build & Launch
 
-```bash
+```
 docker compose up --build
 ```
 
