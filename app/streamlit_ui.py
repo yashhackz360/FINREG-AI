@@ -1,3 +1,5 @@
+import sys, os
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import streamlit as st
 import os
 import json
@@ -60,7 +62,7 @@ with st.sidebar:
     st.info(" Rag Powered!! assistant for Indian financial regulations.")
     
     st.markdown("---")
-    st.markdown("### 🔴 Latest Ingestions Summary")
+    st.markdown("### ðŸ”´ Latest Ingestions Summary")
     
     summaries_file = config.summaries_file_path
     if os.path.exists(summaries_file):
