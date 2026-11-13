@@ -35,8 +35,8 @@ class Config:
     """Main configuration class for the entire application."""
     def __init__(self):
         # --- API Keys ---
-        self.groq_api_key: str = os.getenv("GROQ_API_KEY")
-        pinecone_api_key = os.getenv("PINECONE_API_KEY")
+        self.groq_api_key: str = (os.getenv("GROQ_API_KEY") or "").strip()
+        pinecone_api_key = (os.getenv("PINECONE_API_KEY") or "").strip()
 
         if not all([self.groq_api_key, pinecone_api_key]):
             raise ValueError("API keys for Groq and Pinecone must be set in the .env file.")
@@ -52,7 +52,7 @@ class Config:
         # --- Component Configurations ---
         self.pinecone_config = PineconeConfig(
             api_key=pinecone_api_key,
-            index_name=os.getenv("PINECONE_INDEX_NAME", "fintech-regulatory-rag"),
+            index_name=(os.getenv("PINECONE_INDEX_NAME") or "fintech-regulatory-rag").strip(),
             dimension=384, 
             metric="cosine"
         )
