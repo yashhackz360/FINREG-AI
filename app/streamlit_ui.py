@@ -59,10 +59,10 @@ pipeline, config = initialize_pipeline()
 # --- Sidebar ---
 with st.sidebar:
     st.image("https://placehold.co/400x200/0B0F19/60A5FA?text=FinReg+AI", use_column_width=True)
-    st.info(" Rag Powered!! assistant for Indian financial regulations.")
+    st.info("AI assistant for Indian financial regulations, powered by retrieval-augmented generation (RAG) over RBI and SEBI publications.")
     
     st.markdown("---")
-    st.markdown("### ðŸ”´ Latest Ingestions Summary")
+    st.markdown("### Latest Regulatory Updates")
     
     summaries_file = config.summaries_file_path
     if os.path.exists(summaries_file):
@@ -76,18 +76,18 @@ with st.sidebar:
                             st.markdown(summary_data['summary'])
                             st.markdown(f"<a href='{summary_data['url']}' target='_blank'>Read Full Document &rarr;</a>", unsafe_allow_html=True)
                 else:
-                     st.write("Awaiting first real-time summary...")
+                     st.write("No recent updates available yet.")
             except (json.JSONDecodeError, IndexError):
-                st.write("Awaiting first real-time summary...")
+                st.write("No recent updates available yet.")
     else:
-        st.write("Awaiting first real-time summary...")
+        st.write("No recent updates available yet.")
 
     st.markdown("---")
     st.markdown(
         """
         <div style="text-align: center; padding: 0.5rem;">
             <p style="font-size: 1.1rem; font-weight: 600; color: #FFFFFF; margin-top: 0;">
-                Yashwanth K
+                Built by Yashwanth K
             </p>
             <a href="https://www.linkedin.com/in/yashwanth-kasarabada-ba4265258/" target="_blank">LinkedIn</a> |
             <a href="https://github.com/yashhackz360" target="_blank">GitHub</a>
@@ -97,18 +97,19 @@ with st.sidebar:
     )
 
 # --- Main UI ---
-st.title("Fintech Regulatory Assistant")
+st.title("FinReg AI")
+st.caption("Ask questions about RBI and SEBI regulations and get source-backed answers.")
 
 # Initialize and display chat history
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "Hi There I am here you to get acquantied with the  regaultiry infroamtion updated one for indian fintech shoot your questions ?"}]
+    st.session_state.messages = [{"role": "assistant", "content": "Hello! I can answer questions about Indian financial and fintech regulations using the latest RBI and SEBI publications. What would you like to know?"}]
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
 # Handle user input
-if query := st.chat_input("Ask a question..."):
+if query := st.chat_input("Ask about RBI / SEBI regulations..."):
     st.session_state.messages.append({"role": "user", "content": query})
     with st.chat_message("user"):
         st.markdown(query)

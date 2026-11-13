@@ -86,22 +86,21 @@ class LLMGenerator:
         """
         prompt = self._build_prompt(query, context_chunks, chat_history)
 
-        try:
-            self.logger.info("Sending request to Groq API to generate answer.")
-            chat_completion = self.client.chat.completions.create(
-                messages=[{"role": "user", "content": prompt}],
-                model=self.model,
-                temperature=0.1,  # Lower temperature for factual responses
-                max_tokens=1024,
-            )
-            answer = chat_completion.choices[0].message.content.strip()
-            self.logger.info("Successfully received answer from Groq API.")
-            return answer
-        except Exception as e:
-            self.logger.error(
-                f"Failed to generate answer from LLM. Error: {e}", exc_info=True
-            )
-            return "Error: There was an issue communicating with the language model."
+        last_err = None
+        for model in dict.fromkeys([self.model, "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]):
+            try:
+                self.logger.info(f"Sending request to Groq API ({model}).")
+                chat_completion = self.client.chat.completions.create(
+                    messages=[{"role": "user", "content": prompt}],
+                    model=model,
+                    temperature=0.1,
+                    max_tokens=1024,
+                )
+                return chat_completion.choices[0].message.content.strip()
+            except Exception as e:
+                last_err = e
+                self.logger.error(f"LLM call failed with {model}: {e}", exc_info=True)
+        return f"Error: language model request failed ({type(last_err).__name__}: {str(last_err)[:200]})"
 
     # --- NEW METHODS FOR SUMMARIZATION ---
     def _build_summary_prompt(self, new_doc_text: str, old_docs_texts: Optional[List[str]] = None) -> str:
