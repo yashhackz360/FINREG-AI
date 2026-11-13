@@ -32,7 +32,7 @@ class LLMGenerator:
         """
         # Extract context
         context_str = "\n\n---\n\n".join(
-            [chunk['metadata']['text']
+            [f"[Document: {chunk['metadata'].get('title', 'N/A')} | Published: {chunk['metadata'].get('published', 'unknown')} | Source: {chunk['metadata'].get('source', 'N/A')}]\n{chunk['metadata']['text']}"
              for chunk in context_chunks
              if 'metadata' in chunk and 'text' in chunk['metadata']]
         )
@@ -59,6 +59,7 @@ class LLMGenerator:
          If the context or retrieved material does not contain the necessary detail, state clearly: “The information is not in the documents.”
          When helpful, flag regulatory gaps, pending consultations, or effective dates.
          Use prior chat history only for conversational continuity, not as a source of regulatory facts.
+         STRICT GROUNDING: state only facts that appear in the RETRIEVED CONTEXT. Never invent dates, figures, circular numbers, thresholds or expansions of acronyms. Quote document titles and publication dates as given in the context headers, and mention the publication date when describing something as recent. For greetings or small talk, reply briefly without citing regulations.
 
         CHAT HISTORY:
         ---
@@ -166,7 +167,7 @@ class LLMGenerator:
                 messages=[{"role": "user", "content": prompt}],
                 model=self.model,
                 temperature=0.2,
-                max_tokens=512,
+                max_tokens=1500,
             )
             summary = chat_completion.choices[0].message.content.strip()
             self.logger.info("Successfully received summary from Groq API.")
