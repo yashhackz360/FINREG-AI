@@ -58,7 +58,7 @@ pipeline, config = initialize_pipeline()
 
 # --- Sidebar ---
 with st.sidebar:
-    st.image("https://placehold.co/400x200/0B0F19/60A5FA?text=FinReg+AI", use_column_width=True)
+    st.image("https://placehold.co/400x200/0B0F19/60A5FA?text=FinReg+AI", width="stretch")
     st.info("AI assistant for Indian financial regulations, powered by retrieval-augmented generation (RAG) over RBI and SEBI publications.")
     
     st.markdown("---")

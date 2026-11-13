@@ -1,4 +1,5 @@
 import logging
+import re
 from groq import Groq
 from typing import List, Dict, Any, Optional
 
@@ -75,6 +76,25 @@ class LLMGenerator:
         """.strip()
         return prompt
 
+    PREFERRED_MODELS = [
+        "llama-3.3-70b-versatile",
+        "openai/gpt-oss-120b",
+        "openai/gpt-oss-20b",
+        "llama-3.1-8b-instant",
+    ]
+
+    def _candidate_models(self) -> List[str]:
+        """Configured model first, then preferred models that this key can actually access."""
+        try:
+            available = {m.id for m in self.client.models.list().data}
+        except Exception as e:
+            self.logger.warning(f"Could not list Groq models: {e}")
+            return list(dict.fromkeys([self.model] + self.PREFERRED_MODELS))
+        ordered = [m for m in [self.model] + self.PREFERRED_MODELS if m in available]
+        if not ordered:  # fall back to any chat-capable model
+            ordered = [m for m in sorted(available) if not re.search(r"whisper|orpheus|guard|safeguard|tts", m)]
+        return list(dict.fromkeys(ordered))
+
     def generate_answer(
         self,
         query: str,
@@ -87,7 +107,7 @@ class LLMGenerator:
         prompt = self._build_prompt(query, context_chunks, chat_history)
 
         last_err = None
-        for model in dict.fromkeys([self.model, "llama-3.3-70b-versatile", "llama-3.1-8b-instant"]):
+        for model in self._candidate_models():
             try:
                 self.logger.info(f"Sending request to Groq API ({model}).")
                 chat_completion = self.client.chat.completions.create(
