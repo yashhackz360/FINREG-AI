@@ -43,7 +43,7 @@ class Config:
 
         # --- Model & RAG Settings ---
         self.embedding_model: str = "sentence-transformers/all-MiniLM-L6-v2"
-        self.llm_model: str = "llama-3.1-8b-instant"
+        self.llm_model: str = "openai/gpt-oss-120b"
         self.top_k_retrieval: int = 5
         
         # --- NEW: Path for generated summaries ---

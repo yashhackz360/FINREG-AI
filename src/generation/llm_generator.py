@@ -77,10 +77,10 @@ class LLMGenerator:
         return prompt
 
     PREFERRED_MODELS = [
-        "llama-3.3-70b-versatile",
         "openai/gpt-oss-120b",
         "openai/gpt-oss-20b",
-        "llama-3.1-8b-instant",
+        "qwen/qwen3.8-27b",
+        "llama-3.3-70b-versatile",
     ]
 
     def _candidate_models(self) -> List[str]:
@@ -114,7 +114,7 @@ class LLMGenerator:
                     messages=[{"role": "user", "content": prompt}],
                     model=model,
                     temperature=0.1,
-                    max_tokens=1024,
+                    max_tokens=2048,
                 )
                 return chat_completion.choices[0].message.content.strip()
             except Exception as e:
